@@ -270,7 +270,7 @@ def drill(
     try:
         if _sidecars(path):
             raise _Rejected("live_sidecars_present")
-        with tempfile.TemporaryDirectory(prefix="sqlite-restore-drill-", dir=temp_dir) as workspace:
+        with tempfile.TemporaryDirectory(prefix="sqlite-backup-probe-", dir=temp_dir) as workspace:
             restored = Path(workspace) / "restored.sqlite"
             _copy(path, restored, max_bytes, deadline, report, expected_sha256)
             _inspect(restored, contract, deadline, report)

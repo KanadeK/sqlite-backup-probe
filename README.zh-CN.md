@@ -1,4 +1,4 @@
-# sqlite-restore-drill
+# sqlite-backup-probe
 
 对已有 SQLite 备份做一次隔离恢复检查：把普通或 gzip 文件恢复到临时目录，
 验证数据库结构、外键，并按 JSON 合约检查表、字段、行数和应用版本。
@@ -7,7 +7,7 @@
 ```sh
 python -m pip install .
 python examples/demo.py
-python -m sqlite_restore_drill backup.sqlite.gz --contract expectations.json
+python -m sqlite_backup_probe backup.sqlite.gz --contract expectations.json
 ```
 
 合约格式、安装步骤和参数见 [英文 README](README.md)。退出码 0 表示请求的检查通过，
@@ -18,5 +18,5 @@ python -m sqlite_restore_drill backup.sqlite.gz --contract expectations.json
 默认原文件与解压文件分别限制在 512 MiB，超时 30 秒为协作式检查，不能中断所有系统 I/O。
 不检查业务正确性、备份新鲜度，也不替代完整灾难恢复演练。
 
-使用 `python -m pip uninstall sqlite-restore-drill` 卸载；临时恢复目录正常完成后自动清理。
+使用 `python -m pip uninstall sqlite-backup-probe` 卸载；临时恢复目录正常完成后自动清理。
 不要把删除真实备份当作卸载步骤。MIT 许可证，Python 3.11+。

@@ -1,7 +1,7 @@
 # Security
 
 Version 0.1.x is the currently supported release line. For a sensitive report,
-use [GitHub private vulnerability reporting](https://github.com/KanadeK/sqlite-restore-drill/security/advisories/new)
+use [GitHub private vulnerability reporting](https://github.com/KanadeK/sqlite-backup-probe/security/advisories/new)
 when enabled. If it is unavailable, open an Issue requesting a private contact
 without disclosing the vulnerability or attaching private data. Do not post
 exploit details or confidential payloads publicly. There is no guaranteed response SLA.

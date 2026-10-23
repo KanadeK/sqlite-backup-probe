@@ -7,7 +7,7 @@ import tempfile
 from contextlib import closing
 from pathlib import Path
 
-from sqlite_restore_drill.core import drill
+from sqlite_backup_probe.core import drill
 
 with tempfile.TemporaryDirectory() as temporary:
     root = Path(temporary)

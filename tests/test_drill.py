@@ -10,7 +10,7 @@ from contextlib import closing
 from pathlib import Path
 from unittest.mock import patch
 
-from sqlite_restore_drill.core import ContractError, drill, load_contract, validate_contract
+from sqlite_backup_probe.core import ContractError, drill, load_contract, validate_contract
 
 
 class DrillTests(unittest.TestCase):
@@ -166,7 +166,7 @@ class DrillTests(unittest.TestCase):
             drill(self.db, expected_sha256="not a hash")
 
     def test_cooperative_timeout_and_cleanup(self):
-        with patch("sqlite_restore_drill.core.time.monotonic", side_effect=[0, 2]):
+        with patch("sqlite_backup_probe.core.time.monotonic", side_effect=[0, 2]):
             report = drill(self.db, timeout_seconds=1, temp_dir=self.scratch)
         self.assertIn("timeout", self.codes(report))
         self.assertEqual(list(self.scratch.iterdir()), [])
@@ -174,7 +174,7 @@ class DrillTests(unittest.TestCase):
     def test_changed_input_fails_and_cleans_scratch(self):
         size = self.db.stat().st_size
         with patch(
-            "sqlite_restore_drill.core._stat", side_effect=[(1, 1, size, 1), (1, 1, size, 2)]
+            "sqlite_backup_probe.core._stat", side_effect=[(1, 1, size, 1), (1, 1, size, 2)]
         ):
             report = drill(self.db, temp_dir=self.scratch)
         self.assertIn("source_changed_or_live", self.codes(report))
@@ -247,7 +247,7 @@ class DrillTests(unittest.TestCase):
     def test_cli_workflow_exit_codes_and_privacy(self):
         contract = self.root / "contract.json"
         contract.write_text(json.dumps(self.contract))
-        command = [sys.executable, "-m", "sqlite_restore_drill", str(self.db)]
+        command = [sys.executable, "-m", "sqlite_backup_probe", str(self.db)]
         good = subprocess.run(
             command + ["--contract", str(contract)], capture_output=True, check=False
         )

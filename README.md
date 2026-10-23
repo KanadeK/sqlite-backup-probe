@@ -1,4 +1,4 @@
-# sqlite-restore-drill
+# sqlite-backup-probe
 
 [中文说明](README.zh-CN.md) · [Design](DESIGN.md) · [Security](SECURITY.md)
 
@@ -15,8 +15,8 @@ backup files produced by other tools; it does not require access to the live dat
 ## Install and run
 
 ```sh
-git clone https://github.com/KanadeK/sqlite-restore-drill.git
-cd sqlite-restore-drill
+git clone https://github.com/KanadeK/sqlite-backup-probe.git
+cd sqlite-backup-probe
 python -m venv .venv
 # Activate: source .venv/bin/activate
 # Windows PowerShell: .venv/Scripts/Activate.ps1
@@ -29,12 +29,12 @@ backup API, compresses it, checks it against a contract, demonstrates a failed
 expectation, and cleans up. It fails explicitly if any expected outcome is wrong.
 
 ```sh
-sqlite-restore-drill backups/app.sqlite
-sqlite-restore-drill backups/app.sqlite.gz --contract expectations.json
-sqlite-restore-drill backups/app.sqlite --max-bytes 1073741824 --timeout-seconds 60
+sqlite-backup-probe backups/app.sqlite
+sqlite-backup-probe backups/app.sqlite.gz --contract expectations.json
+sqlite-backup-probe backups/app.sqlite --max-bytes 1073741824 --timeout-seconds 60
 ```
 
-`python -m sqlite_restore_drill` is equivalent. JSON is written to stdout. No row
+`python -m sqlite_backup_probe` is equivalent. JSON is written to stdout. No row
 payloads, SQL error text or absolute input paths are included. Counts, schema names
 from your contract and integer version fields may still be sensitive.
 
@@ -140,7 +140,7 @@ python -m build
 
 Read-only CI tests Python 3.11/3.14 on Linux, macOS and Windows.
 [VALIDATION.md](VALIDATION.md) records local release checks; Actions records remote
-results. Uninstall with `python -m pip uninstall sqlite-restore-drill`, then remove
+results. Uninstall with `python -m pip uninstall sqlite-backup-probe`, then remove
 the virtual environment if desired. No global configuration or persistent output
 is created by the tool. Do not delete your backup as part of uninstalling.
 

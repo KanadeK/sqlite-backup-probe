@@ -1,5 +1,5 @@
 name: Bug report
-description: Report a reproducible problem in sqlite-restore-drill
+description: Report a reproducible problem in sqlite-backup-probe
 body:
   - type: textarea
     id: reproduce

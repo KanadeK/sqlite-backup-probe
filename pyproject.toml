@@ -3,7 +3,7 @@ requires = ["setuptools==84.2.1"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "sqlite-restore-drill"
+name = "sqlite-backup-probe"
 version = "0.1.0"
 description = "Rehearse validation of standalone SQLite backups in an isolated workspace."
 readme = "README.md"
@@ -20,11 +20,11 @@ classifiers = [
 ]
 
 [project.scripts]
-sqlite-restore-drill = "sqlite_restore_drill.cli:main"
+sqlite-backup-probe = "sqlite_backup_probe.cli:main"
 
 [project.urls]
-Repository = "https://github.com/KanadeK/sqlite-restore-drill"
-Issues = "https://github.com/KanadeK/sqlite-restore-drill/issues"
+Repository = "https://github.com/KanadeK/sqlite-backup-probe"
+Issues = "https://github.com/KanadeK/sqlite-backup-probe/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
